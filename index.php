@@ -17,92 +17,65 @@ if (isset($_GET["status"])) {
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Sign In</title>
-        <link rel="stylesheet" href="css/style.css">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <style>
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-            }
 
-            body {
-                font-family: Arial, sans-serif;
-                background-color: #f4f4f4;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 100vh;
-            }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        .form-control {
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 4px;
+}
 
-            .signin-form {
-                max-width: 400px;
-                margin: auto;
-                padding: 30px;
-                border: 1px solid #ddd;
-                border-radius: 8px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            }
+.form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+}
+       
+    </style>
+</head>
 
-            .signin-form h2 {
-                margin-bottom: 20px;
-                text-align: center;
-            }
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Left Section -->
+            <div class="col-lg-6 p-0 d-none d-lg-block">
+                <div class="left-section">
+                    <h2>Welcome to Waste Management System</h2>
+                    <p>This is where you can add some introductory text or information about your system.</p>
+                </div>
+            </div>
 
-            .form-control {
-                padding: 10px;
-                margin-bottom: 15px;
-                border-radius: 4px;
-            }
-
-            .form-control:focus {
-                border-color: #007bff;
-                box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
-            }
-
-            .btn-primary {
-                padding: 10px;
-                width: 100%;
-                border-radius: 4px;
-            }
-
-            .btn-primary:hover {
-                background-color: #0056b3;
-                border-color: #0056b3;
-            }
-
-            .form-footer {
-                text-align: center;
-                margin-top: 20px;
-            }
-        </style>
-
-    </head>
-    <body>
-        <div class="container">
-            <div class="signin-form">
-                <h2>Sign In Waste</h2>
-<?= $message ?>
-                <form action="login.php" method="POST">
-                    <div class="mb-3">
-                        <input type="email" class="form-control" placeholder="Email address" name="username" >
+            <!-- Right Section -->
+            <div class="col-lg-6 p-0 ">
+                <div class="right-section">
+                    <div class="signin-form">
+                        <h4>Waste Management System</h4>
+                        <h3>Login</h3>
+                        <?= $message ?>
+                        <form action="login.php" method="POST">
+                            <div class="mb-3">
+                                <input type="email" class="form-control" placeholder="Email address" name="username">
+                            </div>
+                            <div class="mb-3">
+                                <input type="password" class="form-control" placeholder="Password" name="password">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Sign in</button>
+                            <p class="form-footer">Don't have an account? <a href="sign_up.php">Sign up</a></p>
+                        </form>
                     </div>
-                    <div class="mb-3">
-                        <input type="password" class="form-control" placeholder="Password" name="password" >
-                    </div>
-                    <button type="submit" class="btn btn-primary">Sign in</button>
-                    <p class="form-footer">Don't have an account? <a href="sign_up.php">Sign up</a></p>
-                </form>
+                </div>
             </div>
         </div>
-        <script>
-   
-</script>
+    </div>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    </body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
+</body>
+
 </html>
