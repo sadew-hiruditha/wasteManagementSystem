@@ -2,158 +2,171 @@
 session_start();
 
 if (isset($_SESSION["user_id"])) {
-
 ?>
 
-    <!DOCTYPE html>
-    <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../../css/style.css">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-        <title>Admin Dashboard</title>
-    </head>
-   
+    <title>Admin Dashboard</title>
+    <style>
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            z-index: 100;
+            padding: 48px 0 0;
+            overflow-x: hidden;
+            overflow-y: auto;
+            background-color: #343a40;
+            height: 100vh;
+        }
 
-    <body>
-    <div class="container mt-5">
-        <h2>Welcome to the Admin Dashboard <span class="name"> <?= $_SESSION["user_firstname"] . " " . $_SESSION["user_lastname"] ?></span> </h2>
+        .sidebar-heading {
+            color: #fff;
+            font-size: 1.2rem;
+            padding: 0 16px;
+        }
 
-        <hr>
+        .nav-link {
+            color: rgba(255, 255, 255, 0.75);
+            padding: 10px 16px;
+        }
 
-        <!-- Manage Users Section -->
-        <h3>Manage Users</h3>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
-                    <th>Role</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>User 1</td>
-                    <td>Lastname 1</td>
-                    <td>user1@example.com</td>
-                    <td>User</td>
-                    <td>
-                        <button class="btn btn-sm btn-warning">Edit</button>
-                        <button class="btn btn-sm btn-danger">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>User 2</td>
-                    <td>Lastname 2</td>
-                    <td>user2@example.com</td>
-                    <td>Driver</td>
-                    <td>
-                        <button class="btn btn-sm btn-warning">Edit</button>
-                        <button class="btn btn-sm btn-danger">Delete</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <hr>
+        .nav-link:hover {
+            color: #fff;
+            text-decoration: none;
+        }
 
-        <!-- Manage Routes Section -->
-        <h3>Manage Routes</h3>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Route ID</th>
-                    <th>Route Name</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Route 1</td>
-                    <td>
-                        <button class="btn btn-sm btn-warning">Edit</button>
-                        <button class="btn btn-sm btn-danger">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Route 2</td>
-                    <td>
-                        <button class="btn btn-sm btn-warning">Edit</button>
-                        <button class="btn btn-sm btn-danger">Delete</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <hr>
+        .content {
+            padding: 20px;
+        }
 
-        <!-- Assign Routes Section -->
-        <h3>Assign Routes</h3>
-        <form action="assign_route.php" method="POST">
-            <div class="mb-3">
-                <label for="driver" class="form-label">Select Driver</label>
-                <select class="form-select" id="driver" name="driver" required>
-                    <option value="Driver 1">Driver 1</option>
-                    <option value="Driver 2">Driver 2</option>
-                </select>
+        .card {
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+
+            .content {
+                padding: 10px;
+            }
+
+            .bottom-nav {
+                display: flex;
+                justify-content: space-around;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background-color: #343a40;
+                z-index: 1000;
+            }
+
+            .bottom-nav .nav-link {
+                padding: 10px;
+                color: #fff;
+            }
+
+            .bottom-nav .nav-link:hover {
+                color: #fff;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        
+        <div class="row">
+            <div class="col-md-3 col-lg-2 d-none d-md-block sidebar">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#manageUsers">Manage Users</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#manageRoutes">Manage Routes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#assignRoutes">Assign Routes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#pickupHistory">Pickup History</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="sign_out.php">Sign Out</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="mb-3">
-                <label for="route" class="form-label">Select Route</label>
-                <select class="form-select" id="route" name="route" required>
-                    <option value="Route 1">Route 1</option>
-                    <option value="Route 2">Route 2</option>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-primary">Assign</button>
-        </form>
-        <hr>
 
-        <!-- View Pickup History Section -->
-        <h3>Pickup History</h3>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Driver</th>
-                    <th>Route</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>2024-06-17</td>
-                    <td>Driver 1</td>
-                    <td>Route 1</td>
-                    <td>Completed</td>
-                </tr>
-                <tr>
-                    <td>2024-06-18</td>
-                    <td>Driver 2</td>
-                    <td>Route 2</td>
-                    <td>Pending</td>
-                </tr>
-            </tbody>
-        </table>
-        <hr>
+            <!-- Main Content -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 content">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h2>Welcome to the Admin Dashboard <span class="name"><?= $_SESSION["user_firstname"] . " " . $_SESSION["user_lastname"] ?></span></h2>
+                </div>
 
-        <!-- Sign Out Button -->
-        <a href="sign_out.php" class="btn btn-danger">Sign Out</a>
+                <div class="row">
+                    <!-- Cards Section -->
+                    <div class="col-md-4">
+                        <div class="card text-white bg-primary">
+                            <div class="card-body">
+                                <h5 class="card-title">Total Users</h5>
+                                <p class="card-text">100</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card text-white bg-success">
+                            <div class="card-body">
+                                <h5 class="card-title">Total Drivers</h5>
+                                <p class="card-text">50</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card text-white bg-info">
+                            <div class="card-body">
+                                <h5 class="card-title">Total Routes</h5>
+                                <p class="card-text">20</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+        </div>
     </div>
-    
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Bottom Navigation for Mobile -->
+    <nav class="bottom-nav d-md-none">
+        <a class="nav-link" href="#manageUsers"><i class="bi bi-people"></i></a>
+        <a class="nav-link" href="#manageRoutes"><i class="bi bi-map"></i></a>
+        <a class="nav-link" href="#assignRoutes"><i class="bi bi-clipboard"></i></a>
+        <a class="nav-link" href="#pickupHistory"><i class="bi bi-clock-history"></i></a>
+        <a class="nav-link" href="sign_out.php"><i class="bi bi-box-arrow-right"></i></a>
+    </nav>
+
+    <!-- Bootstrap JS (optional, for certain components that require JavaScript) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YdInl8o8XGksR5tD2nMrZ8WxEBQHV+WjHFrTL9pTNXTGeRKsl9n6r9TnP/jTTTyg" crossorigin="anonymous"></script>
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
+
 </body>
 
-    </html>
+</html>
 <?php
 } else {
     header("Location:../../");
 }
+?>
