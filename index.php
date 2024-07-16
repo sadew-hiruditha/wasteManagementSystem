@@ -61,19 +61,23 @@ if (isset($_GET["status"])) {
                             <?= $message ?>
                             <form action="login.php" method="POST">
                                 <div class="mb-3">
-                                    <input type="email" class="form-control" placeholder="Email address" name="username">
+                                    <input type="text" class="form-control" placeholder="Email address" name="username">
                                 </div>
                                 <div class="mb-3">
                                     <input type="password" class="form-control" placeholder="Password" name="password">
                                 </div>
-                                <div class="mb-3">
-                                    <label for="role" class="form-label">Select Role</label>
-                                    <select class="form-select" id="role" name="role" required>
-                                        <option value="" selected disabled>Select Role</option>
-                                        <option value="admin">Admin</option>
-                                        <option value="user">User</option>
-                                        <option value="driver">Driver</option>
-                                    </select>
+                                <!--                                <div class="mb-3">
+                                                                    <label for="role" class="form-label">Select Role</label>
+                                                                    <select class="form-select" id="role" name="role" required>
+                                                                        <option value="" selected disabled>Select Role</option>
+                                                                        <option value="admin">Admin</option>
+                                                                        <option value="user">User</option>
+                                                                        <option value="driver">Driver</option>
+                                                                    </select>
+                                                                </div>-->
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="rememberMe" name="rememberMe">
+                                    <label class="form-check-label" for="rememberMe">Remember me</label>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Sign in</button>
                                 <p class="form-footer">Don't have an account? <a href="sign_up.php">Sign up</a></p>

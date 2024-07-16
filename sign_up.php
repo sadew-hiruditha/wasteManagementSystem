@@ -85,7 +85,7 @@ if (isset($_GET["status"])) {
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <input type="email" class="form-control" placeholder="Email address" name="username">
+                                <input type="text" class="form-control" placeholder="Email address" name="username">
                             </div>
                             <div class="mb-3">
                                 <input type="password" class="form-control" placeholder="Password" name="password">

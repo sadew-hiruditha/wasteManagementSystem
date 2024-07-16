@@ -17,7 +17,7 @@ Class DbConnector {
         try {
             $dsn = "mysql:host=" . self::$host . ";dbname=" . self::$dbname;
             $con = new PDO($dsn, self::$dbuser, self::$dbpass);
-
+         
             return $con;
         } catch (PDOException $ex) {
             die("Error in database connetion" . $ex->getMessage());
