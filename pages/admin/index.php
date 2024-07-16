@@ -1,7 +1,10 @@
 <?php
 session_start();
 
-if (isset($_SESSION["user_id"])) {
+if (!isset($_SESSION["user_name"]) || $_SESSION["user_role"] !== "admin") {
+    header("Location:../../");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -165,8 +168,3 @@ if (isset($_SESSION["user_id"])) {
 </body>
 
 </html>
-<?php
-} else {
-    header("Location:../../");
-}
-?>

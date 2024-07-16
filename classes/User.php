@@ -49,7 +49,7 @@ class User {
     public function register($con) {
         try {
 //        $con = DbConnector::getConnection();
-            $query = "INSERT INTO user(firstName,lastName,username,password,role) VALUES (?,?,?,?,?)";
+            $query = "INSERT INTO users(firstName,lastName,username,password,role) VALUES (?,?,?,?,?)";
             $pstmt = $con->prepare($query);
             $pstmt->bindValue(1, $this->first_name);
             $pstmt->bindValue(2, $this->last_name);
@@ -66,7 +66,7 @@ class User {
 
     public function authenticate($con) {
         try {
-            $query = "SELECT * From user WHERE username = ?";
+            $query = "SELECT * From users WHERE username = ?";
             $pstmt = $con->prepare($query);
             $pstmt->bindValue(1, $this->username);
             $pstmt->execute();
