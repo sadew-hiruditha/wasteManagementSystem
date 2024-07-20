@@ -36,6 +36,17 @@ if (isset($_GET["status"])) {
                 border-color: #007bff;
                 box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
             }
+            
+            .custom-btn {
+                background-color: #28a745;
+                border-color: #28a745;
+                transition: background-color 0.3s ease, border-color 0.3s ease;
+            }
+
+            .custom-btn:hover {
+                background-color: #218838;
+                border-color: #1e7e34;
+            }
 
         </style>
     </head>
@@ -46,7 +57,7 @@ if (isset($_GET["status"])) {
                 <!-- Left Section -->
                 <div class="col-lg-6 p-0 d-none d-lg-block">
                     <div class="left-section">
-                        <h2>Welcome Back To</h2>
+                        <h2 class="display-4 mb-4">Welcome Back To</h2>
                         <h1>Waste Management System</h1>
                         <!-- <p>This is where you can add some introductory text or information about your system.</p> -->
                     </div>
@@ -79,7 +90,7 @@ if (isset($_GET["status"])) {
                                     <input type="checkbox" class="form-check-input" id="rememberMe" name="rememberMe">
                                     <label class="form-check-label" for="rememberMe">Remember me</label>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Sign in</button>
+                                <button type="submit" class="btn btn-primary btn-lg w-100 custom-btn">Sign in</button>
                                 <p class="form-footer">Don't have an account? <a href="sign_up.php">Sign up</a></p>
                             </form>
                         </div>
