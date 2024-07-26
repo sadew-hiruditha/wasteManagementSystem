@@ -24,6 +24,7 @@ $user = new User(
     $_SESSION['user_postalcode']
 );
 $user->setId($_SESSION['user_id']);
+$currentPage = 'dashboard';
 ?>
 
 <!DOCTYPE html>
