@@ -83,3 +83,19 @@ class WasteRequest {
         }
     }
 }
+
+
+class WasteRequests {
+    public static function getAllRequests($conn) {
+        $query = "SELECT cr.id, CONCAT(u.firstname, ' ', u.lastname) AS customer_name, 
+                         cr.waste_type, cr.quantity, cr.preferred_date, cr.status
+                  FROM waste_requests cr
+                  JOIN users u ON cr.user_id = u.id
+                  ORDER BY cr.preferred_date ASC";
+        
+        $stmt = $conn->prepare($query);
+        $stmt->execute();
+        
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+}
