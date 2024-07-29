@@ -44,6 +44,8 @@ try {
     $message = "Error: " . $ex->getMessage();
     $requests = [];
 }
+
+$currentPage = 'view_requests';
 ?>
 
 <!DOCTYPE html>

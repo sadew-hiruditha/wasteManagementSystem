@@ -44,7 +44,7 @@ if (isset($_GET["status"])) {
             <div class="row">
                 <div class="col-lg-6 p-0 d-none d-lg-block">
                     <div class="left-section">
-                        <h1 class="display-4 mb-4">Welcome to Waste Management System</h1>
+                        <h1 class="display-4 mb-4">Welcome to GreenPath</h1>
                         <p class="lead">Join the waste revolution. Sign up now!</p>
                     </div>
                 </div>
@@ -94,7 +94,7 @@ if (isset($_GET["status"])) {
 
                                 <button type="submit" class="btn btn-primary btn-lg w-100 custom-btn">Create Account</button>
                             </form>
-                            <p class="mt-3 text-center">Already have an account? <a href="index.php">Sign in</a></p>
+                            <p class="mt-3 text-center">Already have an account? <a href="mainLogin.php">Sign in</a></p>
                         </div>
                     </div>
                 </div>
