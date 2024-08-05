@@ -30,16 +30,7 @@
                     <i class="fas fa-chalkboard-teacher"></i>View Requests
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link <?php echo ($currentPage == 'page_4') ? 'active' : ''; ?>" href="#">
-                    <i class="fas fa-user-tie"></i> #
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link <?php echo ($currentPage == 'page_5') ? 'active' : ''; ?>" href="#">
-                    <i class="fas fa-user-graduate"></i> #
-                </a>
-            </li>
+      
             <li class="nav-item">
                 <a class="nav-link logout" href="../components/sign_out.php">
                     <i class="fas fa-sign-out-alt"></i> Logout

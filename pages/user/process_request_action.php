@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 require_once '../../classes/DbConnector.php';
 require_once '../../classes/User.php';
@@ -41,6 +42,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $_SESSION['message'] = "Request deleted successfully!";
                 } else {
                     $_SESSION['message'] = "Error: Failed to delete request.";
+                }
+                break;
+            case 'remove_all_completed':
+                try {
+                    $stmt = $con->prepare("DELETE FROM waste_requests WHERE user_id = :user_id AND status = 'Completed'");
+                    $stmt->bindParam(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
+                    $stmt->execute();
+
+                    $_SESSION['message'] = "All completed requests have been removed successfully.";
+                } catch (PDOException $ex) {
+                    $_SESSION['message'] = "Error: " . $ex->getMessage();
                 }
                 break;
 

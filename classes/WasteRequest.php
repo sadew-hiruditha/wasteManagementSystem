@@ -1,9 +1,12 @@
 <?php
+
 namespace classes;
+
 use PDO;
 use PDOException;
 
 class WasteRequest {
+
     private $id;
     private $user_id;
     private $waste_type;
@@ -19,7 +22,53 @@ class WasteRequest {
         $this->notes = $notes;
     }
 
-    // Getters and setters (unchanged)
+    public function getId() {
+        return $this->id;
+    }
+
+    public function getUser_id() {
+        return $this->user_id;
+    }
+
+    public function getWaste_type() {
+        return $this->waste_type;
+    }
+
+    public function getQuantity() {
+        return $this->quantity;
+    }
+
+    public function getPreferred_date() {
+        return $this->preferred_date;
+    }
+
+    public function getNotes() {
+        return $this->notes;
+    }
+
+    public function setId($id): void {
+        $this->id = $id;
+    }
+
+    public function setUser_id($user_id): void {
+        $this->user_id = $user_id;
+    }
+
+    public function setWaste_type($waste_type): void {
+        $this->waste_type = $waste_type;
+    }
+
+    public function setQuantity($quantity): void {
+        $this->quantity = $quantity;
+    }
+
+    public function setPreferred_date($preferred_date): void {
+        $this->preferred_date = $preferred_date;
+    }
+
+    public function setNotes($notes): void {
+        $this->notes = $notes;
+    }
 
     public function createRequest($con) {
         try {
@@ -82,20 +131,56 @@ class WasteRequest {
             throw new PDOException("Error in deleteRequest: " . $ex->getMessage());
         }
     }
-}
 
-
-class WasteRequests {
+   
+    
     public static function getAllRequests($conn) {
-        $query = "SELECT cr.id, CONCAT(u.firstname, ' ', u.lastname) AS customer_name, 
-                         cr.waste_type, cr.quantity, cr.preferred_date, cr.status
-                  FROM waste_requests cr
-                  JOIN users u ON cr.user_id = u.id
-                  ORDER BY cr.preferred_date ASC";
-        
+    $query = "SELECT cr.id, cr.user_id, CONCAT(u.firstname, ' ', u.lastname) AS customer_name, 
+                     cr.waste_type, cr.quantity, cr.preferred_date, cr.status
+              FROM waste_requests cr
+              JOIN users u ON cr.user_id = u.id
+              ORDER BY cr.user_id ASC, cr.preferred_date ASC";
+
+    $stmt = $conn->prepare($query);
+    $stmt->execute();
+
+    return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+}
+    
+
+    public static function updateRequestStatus($conn, $requestId, $status) {
+        // Ensure $status is one of the allowed enum values
+        if (!in_array($status, ['Pending', 'Approved', 'Completed'])) {
+            throw new \InvalidArgumentException("Invalid status");
+        }
+
+        $query = "UPDATE waste_requests SET status = ? WHERE id = ?";
         $stmt = $conn->prepare($query);
-        $stmt->execute();
-        
-        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $stmt->execute([$status, $requestId]);
     }
+
+    public static function getRequestCountByStatus($con, $user_id, $status) {
+        try {
+            $query = "SELECT COUNT(*) FROM waste_requests WHERE user_id = ? AND status = ?";
+            $stmt = $con->prepare($query);
+            $stmt->execute([$user_id, $status]);
+            return $stmt->fetchColumn();
+        } catch (PDOException $ex) {
+            throw new PDOException("Error in getRequestCountByStatus: " . $ex->getMessage());
+        }
+    }
+
+    public static function getPendingRequestCount($con, $user_id) {
+        return self::getRequestCountByStatus($con, $user_id, 'Pending');
+    }
+
+    public static function getApprovedRequestCount($con, $user_id) {
+        return self::getRequestCountByStatus($con, $user_id, 'Approved');
+    }
+
+    public static function getCompletedRequestCount($con, $user_id) {
+        return self::getRequestCountByStatus($con, $user_id, 'Completed');
+    }
+    
+    
 }
