@@ -134,7 +134,7 @@
                             <div class="feature-icon mb-3">
                                 <i class="fas fa-chart-line"></i>
                             </div>
-                            <h5 class="card-title">Real-time Analytics</h5>
+                            <h5 class="card-title">Real-time Status Traking</h5>
                             <p class="card-text">Access real-time data and analytics to make informed decisions and improve waste management strategies.</p>
                         </div>
                     </div>

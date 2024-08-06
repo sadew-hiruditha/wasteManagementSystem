@@ -27,11 +27,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../../css/navStyle.css">
-    <style>
+    <style> 
     
-</style>
+    </style>
 </head>
-
 <body>
     <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block sidebar collapse">
         <div class="position-sticky">
@@ -41,20 +40,16 @@
             </div>
             <ul class="nav flex-column mt-4">
                 <li class="nav-item">
-                    <a class="nav-link" href="driverDashboard.php">
+                    <a class="nav-link" href="adminDashboard.php">
                         <i class="fas fa-tachometer-alt"></i> Dashboard
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-clipboard-check"></i> Request Collection
+                    <a class="nav-link" href="addDriver.php">
+                        <i class="fas fa-clipboard-check"></i> Add Driver
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="requestlist.php">
-                        <i class="fas fa-chalkboard-teacher"></i> requestlist
-                    </a>
-                </li>
+               
               
                 <li class="nav-item">
                     <a class="nav-link logout" href="../components/sign_out.php">

@@ -171,4 +171,80 @@ class User {
         die("Error in user class updateUserInfo: " . $ex->getMessage());
     }
 }
+
+public static function getTotalUsersCount($con) {
+    try {
+        $query = "SELECT COUNT(*) FROM users WHERE role = 'user'";
+        $stmt = $con->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchColumn();
+    } catch (PDOException $ex) {
+        throw new PDOException("Error in getTotalUsersCount: " . $ex->getMessage());
+    }
+}
+
+public static function getTotalDriversCount($con) {
+    try {
+        $query = "SELECT COUNT(*) FROM users WHERE role = 'driver'";
+        $stmt = $con->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchColumn();
+    } catch (PDOException $ex) {
+        throw new PDOException("Error in getTotalDriversCount: " . $ex->getMessage());
+    }
+}
+
+public static function assignDriver($con, $user_id, $driver_id) {
+    try {
+        $query = "UPDATE users SET assigned_driver_id = ? WHERE id = ?";
+        $pstmt = $con->prepare($query);
+        $pstmt->bindValue(1, $driver_id);
+        $pstmt->bindValue(2, $user_id);
+        $pstmt->execute();
+        return ($pstmt->rowCount() > 0);
+    } catch (PDOException $ex) {
+        die("Error in user class assignDriver: " . $ex->getMessage());
+    }
+}
+
+public static function getUserById($con, $id) {
+    try {
+        $query = "SELECT * FROM users WHERE id = ?";
+        $pstmt = $con->prepare($query);
+        $pstmt->bindValue(1, $id);
+        $pstmt->execute();
+        $rs = $pstmt->fetch(PDO::FETCH_OBJ);
+        if (!empty($rs)) {
+            $user = new User(
+                $rs->firstName,
+                $rs->lastName,
+                $rs->username,
+                '',  // We don't return the password for security reasons
+                $rs->mobile,
+                $rs->street,
+                $rs->city,
+                $rs->state,
+                $rs->postalcode,
+                $rs->role
+            );
+            $user->setId($rs->id);
+            return $user;
+        }
+        return null;
+    } catch (PDOException $exc) {
+        die("Error in user class getUserById: " . $exc->getMessage());
+    }
+}
+
+public static function removeDriverAssignment($con, $user_id) {
+    try {
+        $query = "UPDATE users SET assigned_driver_id = NULL WHERE id = ?";
+        $pstmt = $con->prepare($query);
+        $pstmt->bindValue(1, $user_id);
+        $pstmt->execute();
+        return ($pstmt->rowCount() > 0);
+    } catch (PDOException $ex) {
+        die("Error in user class removeDriverAssignment: " . $ex->getMessage());
+    }
+}
 }
