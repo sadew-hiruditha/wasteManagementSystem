@@ -25,6 +25,7 @@ $user = new User(
         $_SESSION['user_state'],
         $_SESSION['user_postalcode']
 );
+
 $user->setId($_SESSION['user_id']);
 
 $dbcon = new DbConnector();
@@ -35,29 +36,29 @@ $approvedCount = WasteRequest::getApprovedRequestCount($con, $user->getId());
 $completedCount = WasteRequest::getCompletedRequestCount($con, $user->getId());
 
 // Handle form submission for updating user information
-$updateMessage = '';
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (isset($_POST['update_info'])) {
-        $user->setMobile($_POST['mobile']);
-        $user->setStreet($_POST['street']);
-        $user->setCity($_POST['city']);
-        $user->setState($_POST['state']);
-        $user->setPostalcode($_POST['postalcode']);
-
-        // Implement the update method in the User class
-        if ($user->updateUserInfo($con)) {
-            $updateMessage = 'User information updated successfully.';
-            // Update session variables
-            $_SESSION['user_mobile'] = $user->getMobile();
-            $_SESSION['user_street'] = $user->getStreet();
-            $_SESSION['user_city'] = $user->getCity();
-            $_SESSION['user_state'] = $user->getState();
-            $_SESSION['user_postalcode'] = $user->getPostalcode();
-        } else {
-            $updateMessage = 'Failed to update user information.';
-        }
-    }
-}
+//$updateMessage = '';
+//if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+//    if (isset($_POST['update_info'])) {
+//        $user->setMobile($_POST['mobile']);
+//        $user->setStreet($_POST['street']);
+//        $user->setCity($_POST['city']);
+//        $user->setState($_POST['state']);
+//        $user->setPostalcode($_POST['postalcode']);
+//
+//        // Implement the update method in the User class
+//        if ($user->updateUserInfo($con)) {
+//            $updateMessage = 'User information updated successfully.';
+//            // Update session variables
+//            $_SESSION['user_mobile'] = $user->getMobile();
+//            $_SESSION['user_street'] = $user->getStreet();
+//            $_SESSION['user_city'] = $user->getCity();
+//            $_SESSION['user_state'] = $user->getState();
+//            $_SESSION['user_postalcode'] = $user->getPostalcode();
+//        } else {
+//            $updateMessage = 'Failed to update user information.';
+//        }
+//    }
+//}
 
 $currentPage = 'dashboard';
 ?>
