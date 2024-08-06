@@ -154,4 +154,21 @@ class User {
             die("Error in user class authenticate: " . $exc->getMessage());
         }
     }
+    
+    public function updateUserInfo($con) {
+    try {
+        $query = "UPDATE users SET mobile = ?, street = ?, city = ?, state = ?, postalcode = ? WHERE id = ?";
+        $pstmt = $con->prepare($query);
+        $pstmt->bindValue(1, $this->mobile);
+        $pstmt->bindValue(2, $this->street);
+        $pstmt->bindValue(3, $this->city);
+        $pstmt->bindValue(4, $this->state);
+        $pstmt->bindValue(5, $this->postalcode);
+        $pstmt->bindValue(6, $this->id);
+        $pstmt->execute();
+        return ($pstmt->rowCount() > 0);
+    } catch (PDOException $ex) {
+        die("Error in user class updateUserInfo: " . $ex->getMessage());
+    }
+}
 }

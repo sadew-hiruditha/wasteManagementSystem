@@ -13,6 +13,14 @@ if (isset($_GET["status"])) {
         $message = "<h6 class='alert alert-danger'>Error occurred during the registration. Please try again</h6>";
     } elseif ($status == 4) {
         $message = "<h6 class='alert alert-danger'>Passwords do not match. Please try again</h6>";
+    } elseif ($status == 5) {
+        $message = "<h6 class='alert alert-danger'>Invalid mobile number. Please try again</h6>";
+    } elseif ($status == 6) {
+        $message = "<h6 class='alert alert-danger'>Invalid postal code. Please try again</h6>";
+    } elseif ($status == 7) {
+        $message = "<h6 class='alert alert-danger'>Email address is already registered. Please try again</h6>";
+    } elseif ($status == 8) {
+        $message = "<h6 class='alert alert-danger'>Password must be at least 8 characters long and include at least one special character. Please try again.</h6>";
     }
 }
 ?>
@@ -36,7 +44,6 @@ if (isset($_GET["status"])) {
                 background-color: #218838;
                 border-color: #1e7e34;
             }
-       
         </style>
     </head>
     <body>
@@ -82,16 +89,6 @@ if (isset($_GET["status"])) {
                                 <hr>
                                 <input type="password" class="form-control" placeholder="Password" name="password" required>
                                 <input type="password" class="form-control" placeholder="Confirm Password" name="confirm_password" required>
-
-
-
-<!--                            <select class="form-select" name="role" required>
-    <option value="" disabled selected>Select your role</option>
-    <option value="user">Resident</option>
-    <option value="driver">Waste Collector</option>
-</select>-->
-
-
                                 <button type="submit" class="btn btn-primary btn-lg w-100 custom-btn">Create Account</button>
                             </form>
                             <p class="mt-3 text-center">Already have an account? <a href="mainLogin.php">Sign in</a></p>
