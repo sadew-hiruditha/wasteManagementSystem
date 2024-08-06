@@ -171,4 +171,26 @@ class User {
         die("Error in user class updateUserInfo: " . $ex->getMessage());
     }
 }
+
+public static function getTotalUsersCount($con) {
+    try {
+        $query = "SELECT COUNT(*) FROM users WHERE role = 'user'";
+        $stmt = $con->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchColumn();
+    } catch (PDOException $ex) {
+        throw new PDOException("Error in getTotalUsersCount: " . $ex->getMessage());
+    }
+}
+
+public static function getTotalDriversCount($con) {
+    try {
+        $query = "SELECT COUNT(*) FROM users WHERE role = 'driver'";
+        $stmt = $con->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchColumn();
+    } catch (PDOException $ex) {
+        throw new PDOException("Error in getTotalDriversCount: " . $ex->getMessage());
+    }
+}
 }

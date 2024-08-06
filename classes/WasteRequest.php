@@ -132,21 +132,18 @@ class WasteRequest {
         }
     }
 
-   
-    
     public static function getAllRequests($conn) {
-    $query = "SELECT cr.id, cr.user_id, CONCAT(u.firstname, ' ', u.lastname) AS customer_name, 
+        $query = "SELECT cr.id, cr.user_id, CONCAT(u.firstname, ' ', u.lastname) AS customer_name, 
                      cr.waste_type, cr.quantity, cr.preferred_date, cr.status
               FROM waste_requests cr
               JOIN users u ON cr.user_id = u.id
               ORDER BY cr.user_id ASC, cr.preferred_date ASC";
 
-    $stmt = $conn->prepare($query);
-    $stmt->execute();
+        $stmt = $conn->prepare($query);
+        $stmt->execute();
 
-    return $stmt->fetchAll(\PDO::FETCH_ASSOC);
-}
-    
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
 
     public static function updateRequestStatus($conn, $requestId, $status) {
         // Ensure $status is one of the allowed enum values
@@ -181,6 +178,38 @@ class WasteRequest {
     public static function getCompletedRequestCount($con, $user_id) {
         return self::getRequestCountByStatus($con, $user_id, 'Completed');
     }
-    
-    
+
+public static function getRequestCountByStatusforAll($con, $status) {
+    try {
+        $query = "SELECT COUNT(*) FROM waste_requests WHERE status = ?";
+        $stmt = $con->prepare($query);
+        $stmt->execute([$status]);
+        return $stmt->fetchColumn();
+    } catch (PDOException $ex) {
+        throw new PDOException("Error in getRequestCountByStatusforAll: " . $ex->getMessage());
+    }
+}
+
+public static function getPendingRequestCountforAll($con) {
+    return self::getRequestCountByStatusforAll($con, 'Pending');
+}
+
+public static function getApprovedRequestCountforAll($con) {
+    return self::getRequestCountByStatusforAll($con, 'Approved');
+}
+
+public static function getCompletedRequestCountforAll($con) {
+    return self::getRequestCountByStatusforAll($con, 'Completed');
+}
+
+    public static function getTotalRequestsCount($con) {
+        try {
+            $query = "SELECT COUNT(*) FROM waste_requests";
+            $stmt = $con->prepare($query);
+            $stmt->execute();
+            return $stmt->fetchColumn();
+        } catch (PDOException $ex) {
+            throw new PDOException("Error in getTotalRequestsCount: " . $ex->getMessage());
+        }
+    }
 }
