@@ -83,8 +83,8 @@ $currentPage = 'driver_dashboard';
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2"><i class="bi bi-speedometer2 me-2"></i>Driver Dashboard</h1>
                     
-                    <a class="nav-link" href="../components/sign_out.php">
-                        <i class="fas fa-sign-out-alt"></i> Logout
+                 <a class="btn btn-outline-primary" href="../components/sign_out.php">
+                        <i class="bi bi-box-arrow-right"></i> Logout
                     </a>
                  
                 </div>
@@ -155,6 +155,19 @@ $currentPage = 'driver_dashboard';
             </main>
         </div>
     </div>
+    <script>
+      // Toggle sidebar on mobile
+                                        $(".navbar-toggler").click(function () {
+                                            $("#sidebar").toggleClass("show");
+                                        });
+
+                                        // Close sidebar when clicking outside on mobile
+                                        $(document).click(function (event) {
+                                            if (!$(event.target).closest('#sidebar, .navbar-toggler').length) {
+                                                $("#sidebar").removeClass("show");
+                                            }
+                                        });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
