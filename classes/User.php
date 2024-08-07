@@ -19,7 +19,7 @@ class User {
     private $postalcode;
     private $role;
 
-    public function __construct($first_name, $last_name, $username, $password, $mobile, $street, $city, $state, $postalcode, $role = 'user') {
+    public function __construct($first_name, $last_name, $username, $password, $mobile, $street, $city, $state, $postalcode, $role = '') {
         $this->first_name = $first_name;
         $this->last_name = $last_name;
         $this->username = $username;
@@ -219,7 +219,7 @@ public static function getUserById($con, $id) {
                 $rs->firstName,
                 $rs->lastName,
                 $rs->username,
-                '',  // We don't return the password for security reasons
+                '',  
                 $rs->mobile,
                 $rs->street,
                 $rs->city,

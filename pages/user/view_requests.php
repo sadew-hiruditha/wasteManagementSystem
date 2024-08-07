@@ -129,8 +129,8 @@ $currentPage = 'view_requests';
                                         <th><i class="bi bi-trash me-2"></i>Waste Type</th>
                                         <th><i class="bi bi-bar-chart me-2"></i>Quantity</th>
                                         <th><i class="bi bi-calendar-event me-2"></i>Preferred Date</th>
-                                        <th><i class="bi bi-flag me-2"></i>Status</th>
-                                        <th><i class="bi bi-card-text me-2"></i>Notes</th>
+                                        <th><i class="bi bi-flag me-2"></i>Notes</th>
+                                        <th><i class="bi bi-card-text me-2"></i>Status</th>
                                         <th><i class="bi bi-gear me-2"></i>Action</th>
                                     </tr>
                                 </thead>
