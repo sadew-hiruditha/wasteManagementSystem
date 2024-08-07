@@ -115,14 +115,29 @@ $currentPage = 'driver_dashboard';
                 <main class="ms-sm-auto col-lg-12">
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                         <h1 class="h2"><i class="bi bi-speedometer2 me-2"></i>Driver Dashboard</h1>
-                        
+
                         <a class="btn btn-outline-primary" href="../components/sign_out.php">
                             <i class="bi bi-box-arrow-right"></i> Logout
                         </a>
                     </div>
-                    
-                                        <h2 class="h2">Welcome, <?php echo htmlspecialchars($_SESSION['user_firstname']); ?></h2>
 
+                  <div class="bg-white shadow-sm rounded-3 p-4 mb-4">
+    <div class="d-flex align-items-center">
+        <div class="flex-shrink-0">
+            <?php
+            $initials = strtoupper(substr($_SESSION['user_firstname'], 0, 1) . substr($_SESSION['user_lastname'], 0, 1));
+            $bgColor = sprintf('#%06X', mt_rand(0, 0xFFFFFF));
+            ?>
+            <div class="rounded-circle bg-primary text-white d-flex justify-content-center align-items-center" style="width: 64px; height: 64px; font-size: 24px; font-weight: bold;">
+                <?php echo $initials; ?>
+            </div>
+        </div>
+        <div class="flex-grow-1 ms-3">
+            <h2 class="fw-bold mb-1">Welcome back, <?php echo htmlspecialchars($_SESSION['user_firstname']); ?>!</h2>
+            <p class="text-muted mb-0">Ready to manage your waste collection routes?</p>
+        </div>
+    </div>
+</div>
 
                     <?php
                     // Display success or error message if set

@@ -11,8 +11,8 @@
         <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block sidebar collapse">
             <div class="position-sticky">
                 <div class="user-info">
-                    <h5>Welcome, <?php echo htmlspecialchars($user->getFirst_name()); ?>!</h5>
-                    <p><?php echo htmlspecialchars($user->getRole()); ?></p>
+                    <h5><?php echo htmlspecialchars($user->getFirst_name()); ?> <?php echo htmlspecialchars($user->getLast_name()); ?></h5>
+                    <p>user</p>
                 </div>
                 <ul class="nav flex-column mt-4">
                     <li class="nav-item">
