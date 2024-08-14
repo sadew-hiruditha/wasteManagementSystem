@@ -12,7 +12,6 @@ if (isset($_POST["username"], $_POST["password"])) {
         $username = $_POST["username"];
         $password = $_POST["password"];
         
-        // Create a User object with minimal information for authentication
         $user = new User(null, null, $username, $password, null, null, null, null, null, null);
         
         try {

@@ -45,10 +45,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $user->setState($_POST['state']);
         $user->setPostalcode($_POST['postalcode']);
 
-        // Implement the update method in the User class
         if ($user->updateUserInfo($con)) {
             $updateMessage = 'User information updated successfully.';
-            // Update session variables
             $_SESSION['user_mobile'] = $user->getMobile();
             $_SESSION['user_street'] = $user->getStreet();
             $_SESSION['user_city'] = $user->getCity();
