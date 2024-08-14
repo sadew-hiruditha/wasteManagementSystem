@@ -1,106 +1,188 @@
-<?php
-$message = null;
-if (isset($_GET["status"])) {
-    $status = $_GET["status"];
-
-    if ($status == 0) {
-        $message = '<div class="alert alert-danger" role="alert"><h6>Required values were not submitted</h6></div>';
-    } elseif ($status == 1) {
-        $message = '<div class="alert alert-danger" role="alert"><h6>You must fill all fields to login</h6></div>';
-    } elseif ($status == 2) {
-        $message = '<div class="alert alert-danger" role="alert"><h6>Incorrect username or password</h6></div>';
-    } elseif ($status == 'unauthorized') {
-        $message = '<div class="alert alert-warning" role="alert"><h6>Unauthorized access. Please log in with the correct role.</h6></div>';
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Sign In</title>
-        <link rel="stylesheet" href="css/login.css">
-        <link rel="stylesheet" href="css/style.css">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <title>GreenPath - Smart Waste Management System</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
         <style>
-            .form-control {
-                padding: 10px;
-                margin-bottom: 15px;
-                border-radius: 4px;
+            :root {
+                --primary-color: #2ecc71;
+                --secondary-color: #27ae60;
             }
-
-            .form-control:focus {
-                border-color: #007bff;
-                box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             }
-            
-            .custom-btn {
-                background-color: #28a745;
-                border-color: #28a745;
-                transition: background-color 0.3s ease, border-color 0.3s ease;
+            .navbar {
+                background-color: rgba(255, 255, 255, 0.9);
+                box-shadow: 0 2px 4px rgba(0,0,0,.1);
             }
-
-            .custom-btn:hover {
-                background-color: #218838;
-                border-color: #1e7e34;
+            .navbar-brand {
+                color: var(--primary-color) !important;
+                font-weight: bold;
             }
-
+            .nav-link {
+                color: #333 !important;
+            }
+            .btn-custom {
+                background-color: var(--secondary-color);
+                border-color: var(--secondary-color);
+                color: white;
+                transition: all 0.3s ease;
+            }
+            .btn-custom:hover {
+                background-color: var(--primary-color);
+                border-color: var(--primary-color);
+                transform: translateY(-2px);
+            }
+            .hero {
+                background:url('images/login.jpg');
+                background-size: cover;
+                background-position: center;
+                color: white;
+                padding: 100px 0;
+            }
+            .feature-icon {
+                font-size: 3rem;
+                color: var(--primary-color);
+            }
+            .card {
+                border: none;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 6px rgba(0,0,0,.1);
+            }
+            .card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 15px rgba(0,0,0,.1);
+            }
+            .how-to-use {
+                background-color: #f8f9fa;
+            }
+            .step-number {
+                background-color: var(--primary-color);
+                color: white;
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                margin-right: 10px;
+            }
         </style>
     </head>
-
     <body>
-        <div class="container-fluid">
-            <div class="row">
-                <!-- Left Section -->
-                <div class="col-lg-6 p-0 d-none d-lg-block">
-                    <div class="left-section">
-                        <h2 class="display-4 mb-4">Welcome Back To</h2>
-                        <h1>Waste Management System</h1>
-                        <!-- <p>This is where you can add some introductory text or information about your system.</p> -->
-                    </div>
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">GreenPath</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#features">Features</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#how-to-use">How to Use</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="MainLogin.php">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-custom ms-2" href="sign_up.php">Register</a>
+                        </li>
+                    </ul>
                 </div>
+            </div>
+        </nav>
 
-                <!-- Right Section -->
-                <div class="col-lg-6 p-0 ">
-                    <div class="right-section">
-                        <div class="signin-form">
-                            <!-- <h4>Waste Management System</h4> -->
-                            <h3>Login to the System</h3>
-                            <?= $message ?>
-                            <form action="login.php" method="POST">
-                                <div class="mb-3">
-                                    <input type="text" class="form-control" placeholder="Email address" name="username">
+        <header class="hero">
+            <div class="container text-center">
+                <h1 class="display-4 mb-4">Smart Waste Management for a Greener Future</h1>
+                <p class="lead mb-5">Join GreenPath to revolutionize waste management in your community</p>
+                <a href="sign_up.php" class="btn btn-light btn-lg">Get Started</a>
+            </div>
+        </header>
+
+        <main>
+            <section id="features" class="py-5">
+                <div class="container">
+                    <h2 class="text-center mb-5">Our Features</h2>
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100 text-center p-4">
+                                <div class="feature-icon mb-3">
+                                    <i class="fas fa-list-alt"></i>
                                 </div>
-                                <div class="mb-3">
-                                    <input type="password" class="form-control" placeholder="Password" name="password">
+                                <h5 class="card-title">User Waste Request Management</h5>
+                                <p class="card-text">Users can list their waste requests based on categories, quantities, and additional notes. Requests can be edited, changed, and viewed on their dashboard.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100 text-center p-4">
+                                <div class="feature-icon mb-3">
+                                    <i class="fas fa-user-check"></i>
                                 </div>
-                                <!--                                <div class="mb-3">
-                                                                    <label for="role" class="form-label">Select Role</label>
-                                                                    <select class="form-select" id="role" name="role" required>
-                                                                        <option value="" selected disabled>Select Role</option>
-                                                                        <option value="admin">Admin</option>
-                                                                        <option value="user">User</option>
-                                                                        <option value="driver">Driver</option>
-                                                                    </select>
-                                                                </div>-->
-                                <div class="mb-3 form-check">
-                                    <input type="checkbox" class="form-check-input" id="rememberMe" name="rememberMe">
-                                    <label class="form-check-label" for="rememberMe">Remember me</label>
+                                <h5 class="card-title">Driver Request Handling</h5>
+                                <p class="card-text">Drivers can view and manage user requests categorized by user names. They can change the status of requests to pending, accepted, or completed.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100 text-center p-4">
+                                <div class="feature-icon mb-3">
+                                    <i class="fas fa-tachometer-alt"></i>
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-lg w-100 custom-btn">Sign in</button>
-                                <p class="form-footer">Don't have an account? <a href="sign_up.php">Sign up</a></p>
-                            </form>
+                                <h5 class="card-title">Dashboard and Analytics</h5>
+                                <p class="card-text">Users and drivers have access to a dashboard to view and manage requests, track statuses, and access real-time data and analytics for informed decision-making.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <section id="how-to-use" class="how-to-use py-5">
+                <div class="container">
+                    <h2 class="text-center mb-5">How to Use GreenPath</h2>
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <h5><span class="step-number">1</span>Sign Up</h5>
+                            <p>Create your GreenPath account to access our waste management tools and features.</p>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <h5><span class="step-number">2</span>Set Up Your Profile</h5>
+                            <p>Customize your profile with your information.</p>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <h5><span class="step-number">3</span>List Your Waste Request</h5>
+                            <p>Submit your waste requests based on categories, quantities, and additional notes.</p>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <h5><span class="step-number">4</span>Manage and Edit Requests</h5>
+                            <p>View, edit, and manage your listed waste requests through your dashboard.</p>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <h5><span class="step-number">5</span>Track Request Status</h5>
+                            <p>Monitor the status of your waste requests in real-time.</p>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <h5><span class="step-number">6</span>Analyze Performance</h5>
+                            <p>Access real-time data and analytics to evaluate and improve your waste management strategies.</p>
                         </div>
                     </div>
                 </div>
+            </section>
+
+        </main>
+
+        <footer class="bg-dark text-light py-4">
+            <div class="container text-center">
+                <p>&copy; 2024 GreenPath Waste Management System. All rights reserved.</p>
             </div>
-        </div>
+        </footer>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     </body>
-
 </html>

@@ -7,4 +7,4 @@ unset($_SESSION["user_lastname"]);
 unset($_SESSION["user_role"]);
 
 session_destroy();
-header("Location: index.php");
+header("Location: mainLogin.php");
