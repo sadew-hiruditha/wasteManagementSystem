@@ -3,13 +3,35 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/wasteManagementSystem/pages/driver/driverDashboard.php</file>
-            <file>file:/C:/xampp/htdocs/wasteManagementSystem/pages/admin/nav.php</file>
-            <file>file:/C:/xampp/htdocs/wasteManagementSystem/pages/admin/addDriver.php</file>
-            <file>file:/C:/xampp/htdocs/wasteManagementSystem/css/navStyle.css</file>
+            <file>file:/C:/xampp/htdocs/wasteManagementSystem/css/style.css</file>
+            <file>file:/C:/xampp/htdocs/wasteManagementSystem/pages/user/nav.php</file>
             <file>file:/C:/xampp/htdocs/wasteManagementSystem/pages/user/userDashboard.php</file>
-            <file>file:/C:/xampp/htdocs/wasteManagementSystem/pages/driver/nav.php</file>
+            <file>file:/C:/xampp/htdocs/wasteManagementSystem/pages/driver/index.php</file>
             <file>file:/C:/xampp/htdocs/wasteManagementSystem/pages/admin/adminDashboard.php</file>
+            <file>file:/C:/xampp/htdocs/wasteManagementSystem/css/signup.css</file>
+            <file>file:/C:/xampp/htdocs/wasteManagementSystem/pages/user/process_request.php</file>
+            <file>file:/C:/xampp/htdocs/wasteManagementSystem/classes/WasteRequest.php</file>
+            <file>file:/C:/xampp/htdocs/wasteManagementSystem/classes/DbConnector.php</file>
+            <file>file:/C:/xampp/htdocs/wasteManagementSystem/pages/admin/addDriverProcess.php</file>
+            <file>file:/C:/xampp/htdocs/wasteManagementSystem/css/login.css</file>
+            <file>file:/C:/xampp/htdocs/wasteManagementSystem/pages/user/get_request_details.php</file>
+            <file>file:/C:/xampp/htdocs/wasteManagementSystem/logout.php</file>
+            <file>file:/C:/xampp/htdocs/wasteManagementSystem/registration.php</file>
+            <file>file:/C:/xampp/htdocs/wasteManagementSystem/classes/User.php</file>
+            <file>file:/C:/xampp/htdocs/wasteManagementSystem/mainLogin.php</file>
+            <file>file:/C:/xampp/htdocs/wasteManagementSystem/pages/user/view_requests.php</file>
+            <file>file:/C:/xampp/htdocs/wasteManagementSystem/css/navStyle.css</file>
+            <file>file:/C:/xampp/htdocs/wasteManagementSystem/pages/user/process_request_action.php</file>
+            <file>file:/C:/xampp/htdocs/wasteManagementSystem/pages/driver/requestlist.php</file>
+            <file>file:/C:/xampp/htdocs/wasteManagementSystem/pages/user/request_collection.php</file>
+            <file>file:/C:/xampp/htdocs/wasteManagementSystem/sign_up.php</file>
+            <file>file:/C:/xampp/htdocs/wasteManagementSystem/pages/driver/driverDashboard.php</file>
+            <file>file:/C:/xampp/htdocs/wasteManagementSystem/pages/admin/addDriver.php</file>
+            <file>file:/C:/xampp/htdocs/wasteManagementSystem/pages/driver/driverRequestList.php</file>
+            <file>file:/C:/xampp/htdocs/wasteManagementSystem/index.php</file>
+            <file>file:/C:/xampp/htdocs/wasteManagementSystem/pages/driver/updatePickup.php</file>
+            <file>file:/C:/xampp/htdocs/wasteManagementSystem/login.php</file>
+            <file>file:/C:/xampp/htdocs/wasteManagementSystem/pages/driver/nav.php</file>
         </group>
     </open-files>
 </project-private>

@@ -1,7 +1,6 @@
 <?php
 session_start();
 require_once '../../classes/DbConnector.php';
-require_once '../../classes/Driver.php';
 
 use classes\DbConnector;
 use classes\Driver;
